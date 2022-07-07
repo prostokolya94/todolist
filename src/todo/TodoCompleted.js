@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-function TodoCompleted(defaultCount = 0) {
-  const [count, upCount] = useState(defaultCount);
+function TodoCompleted(props) {
   return (
     <p>
-      Today is <strong>...</strong> todo completed!
+      Today is <strong>{props.count}</strong> todo completed!
     </p>
   );
 }

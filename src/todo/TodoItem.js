@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Context from "../context";
+import Modal from "../modal/modal";
 
 const styles = {
   li: {
@@ -36,10 +37,10 @@ function ToDoItem({ todo, index, onChange }) {
         &nbsp;
         {todo.title}
       </span>
-
       <button className="rm" onClick={() => removeTodo(todo.id)}>
         &times;
       </button>
+      <Modal/>
     </li>
   );
 }

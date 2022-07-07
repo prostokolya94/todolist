@@ -8,8 +8,8 @@ function useInputValue(defaultValue = "") {
       value,
       onChange: (event) => setValue(event.target.value),
     },
-    clear: () => setValue(''),
-    value: () => value
+    clear: () => setValue(""),
+    value: () => value,
   };
 }
 
@@ -21,8 +21,8 @@ function AddTodo({ onCreate }) {
 
     if (input.value().trim()) {
       onCreate(input.value());
-      input.clear()
-    }
+      input.clear();
+    } 
   }
 
   return (
