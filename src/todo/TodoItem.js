@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Context from "../context";
 import Modal from "../modal/modal";
+import RemoveBtn from "./RemoveBtn";
 
 const styles = {
   li: {
@@ -21,7 +22,7 @@ const styles = {
 function ToDoItem({ todo, index, onChange }) {
   const { removeTodo } = useContext(Context);
   const classes = [];
-  if (todo.complited) {
+  if (todo.completed) {
     classes.push("done");
   }
   return (
@@ -29,7 +30,7 @@ function ToDoItem({ todo, index, onChange }) {
       <span className={classes.join("")}>
         <input
           type="checkbox"
-          checked={todo.complited}
+          checked={todo.completed}
           style={styles.input}
           onChange={() => onChange(todo.id)}
         />
@@ -37,10 +38,14 @@ function ToDoItem({ todo, index, onChange }) {
         &nbsp;
         {todo.title}
       </span>
-      <button className="rm" onClick={() => removeTodo(todo.id)}>
-        &times;
-      </button>
-      <Modal/>
+      <RemoveBtn
+        isOpen={todo.completed}
+        todo={todo}
+        key={todo.id}
+        index={index}
+        removeTodo={removeTodo}
+      />
+      <Modal />
     </li>
   );
 }

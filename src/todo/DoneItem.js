@@ -9,20 +9,19 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: ".5rem 1rem",
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-    marginBottom: ".5rem",
+    border: "2px solid #fff",
+    borderRadius: "1px",
+    background: "rgba(143, 233, 136, 1)"
   },
   input: {
     marginRight: "1rem",
   },
 };
 
-function DoneItem({ done, index }) {
+function DoneItem({ done}) {
   return (
     <li style={styles.li}>
       <span>
-        <strong>{index + 1}</strong>
         &nbsp;
         {done.title}
       </span>

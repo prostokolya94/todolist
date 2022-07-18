@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "./todo/TodoList";
 import Context from "./context";
 import AddTodo from "./todo/AddTodo";
@@ -8,21 +8,18 @@ import Done from "./todo/Done";
 
 function App() {
   const [todos, setTodos] = useState([
-    { id: 1, complited: false, title: "Buy some bread" },
-    { id: 2, complited: false, title: "Buy some spread" },
-    { id: 3, complited: false, title: "Buy some milk" },
+    { id: 1, completed: false, title: "buy" },
   ]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idToRemove, setidToRemove] = useState();
 
-  const count = todos.filter((el) => el.complited).length;
-  const done = todos.filter((el) => el.complited)
+  const count = todos.filter((el) => el.completed).length;
+  const done = todos.filter((el) => el.completed);
   function toggleTodo(id) {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
-          todo.complited = !todo.complited;
+          todo.completed = !todo.completed;
         }
         return todo;
       })
@@ -31,30 +28,41 @@ function App() {
 
   function removeTodo(id) {
     setIsModalOpen(true);
-    setidToRemove(id)
+    setidToRemove(id);
   }
   function handleOkClick() {
-    setTodos(todos.filter((todo) => todo.id !== idToRemove))
-    setidToRemove(null)  
+    setTodos(todos.filter((todo) => todo.id !== idToRemove));
+    setidToRemove(null);
+    //localStorage.removeItem(('todoArr[]'))
   }
   function addTodo(title) {
-    setTodos(
-      todos.concat([
-        {
-          title,
-          id: Date.now(),
-          completed: false,
-        },
-      ])
-    );
+    let todoArr = todos.concat([
+      {
+        title,
+        id: Date.now(),
+        completed: false,
+      },
+    ]);
+    localStorage.setItem("todoArr", JSON.stringify(todoArr));
+    setTodos(todoArr);
   }
+  useEffect(() => {
+    //if (localStorage.getItem('todoArr') != undefined) {
+      const item = localStorage.getItem("todoArr");
+      let localItem = JSON.parse(item);
+      setTodos(localItem);
+    //} else {
+    //  setTodos({id:1, completed: false, title:'sdsf'});
+    //}
+  }, []);
+
   return (
-    <Context.Provider value={{ removeTodo }}>
+    <Context.Provider value={{ removeTodo}}>
       <div className="wrapper">
         <Modal
           isOpen={isModalOpen}
           handleOk={handleOkClick}
-          handleClose={()=>setIsModalOpen(false)}
+          handleClose={() => setIsModalOpen(false)}
         />
         <h1> React tutorial</h1>
 

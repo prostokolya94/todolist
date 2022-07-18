@@ -29,10 +29,10 @@ code {
   text-decoration: line-through;
 }
 
-.rmo {
-  background: red;
-  color: rgb(248, 244, 244);
-  height: 1.5rem;
-  border-radius: 50%;
-  border: none;
+.doneItem {
+  margin-top: 5rem;
+  background: rgba(0, 0, 0, 1);
+}
+.done-btn {
+  display: none;
 }
