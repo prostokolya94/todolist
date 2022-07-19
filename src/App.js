@@ -7,23 +7,30 @@ import Modal from "./modal/modal";
 import Done from "./todo/Done";
 
 function App() {
-  const [todos, setTodos] = useState([
-    { id: 1, completed: false, title: "buy" },
-  ]);
+  const [todos, setTodos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idToRemove, setidToRemove] = useState();
 
   const count = todos.filter((el) => el.completed).length;
   const done = todos.filter((el) => el.completed);
   function toggleTodo(id) {
-    setTodos(
+    let todoArray = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+    setTodos(todoArray);
+    /*setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
       })
-    );
+    );*/
+    localStorage.setItem("todoArr", JSON.stringify(todoArray));
+   
   }
 
   function removeTodo(id) {
@@ -47,33 +54,37 @@ function App() {
     setTodos(todoArr);
   }
   useEffect(() => {
-    //if (localStorage.getItem('todoArr') != undefined) {
-      const item = localStorage.getItem("todoArr");
-      let localItem = JSON.parse(item);
+    const item = localStorage.getItem("todoArr");
+    let localItem = JSON.parse(item);
+    if (localItem) {
       setTodos(localItem);
-    //} else {
-    //  setTodos({id:1, completed: false, title:'sdsf'});
-    //}
+    } else {
+      setTodos([]);
+    }
+    ///setTodos(localItem ?? [])
   }, []);
 
   return (
-    <Context.Provider value={{ removeTodo}}>
+    <Context.Provider value={{ removeTodo }}>
       <div className="wrapper">
         <Modal
           isOpen={isModalOpen}
           handleOk={handleOkClick}
           handleClose={() => setIsModalOpen(false)}
         />
-        <h1> React tutorial</h1>
+        <h1 className="header"> React tutorial</h1>
 
         <AddTodo onCreate={addTodo} />
         {todos.length ? (
-          <TodoList todos={todos} onToggle={toggleTodo} />
+          <TodoList
+            todos={todos.filter((el) => !el.completed)}
+            onToggle={toggleTodo}
+          />
         ) : (
           <p>No todos</p>
         )}
         <TodoCompleted count={count} />
-        <Done done={done} />
+        <Done done={done} returnToDo={toggleTodo} />
       </div>
     </Context.Provider>
   );

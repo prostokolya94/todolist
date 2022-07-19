@@ -26,7 +26,7 @@ function AddTodo({ onCreate }) {
   }
 
   return (
-    <form style={{ marginBottom: "1rem" }} onSubmit={submitHandler}>
+    <form style={{ marginBottom: "1rem", justifyContent:"center", display:"flex", alignItems:"center" }} onSubmit={submitHandler}>
       <input {...input.bind} />
       <button type="submit">Add to do</button>
     </form>

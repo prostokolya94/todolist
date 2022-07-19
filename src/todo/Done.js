@@ -1,12 +1,12 @@
 import React from "react";
 import DoneItem from "./DoneItem";
 
-function Done(props) {
+function Done({done, returnToDo}) {
 
   return (
     <div className="doneItem">
-      {props.done.map((done, index) => {
-        return <DoneItem Item done={done} key={done.id} index={index} />;
+      {done.map((done, index) => {
+        return <DoneItem Item done={done} key={done.id} index={index} returnToDo={returnToDo} />;
       })}
     </div>
   );

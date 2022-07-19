@@ -26,8 +26,8 @@ function ToDoItem({ todo, index, onChange }) {
     classes.push("done");
   }
   return (
-    <li style={styles.li}>
-      <span className={classes.join("")}>
+    <li style={styles.li} className={classes.join("")}>
+      <span>
         <input
           type="checkbox"
           checked={todo.completed}
