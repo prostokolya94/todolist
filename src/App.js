@@ -30,7 +30,6 @@ function App() {
       })
     );*/
     localStorage.setItem("todoArr", JSON.stringify(todoArray));
-   
   }
 
   function removeTodo(id) {
@@ -40,7 +39,8 @@ function App() {
   function handleOkClick() {
     setTodos(todos.filter((todo) => todo.id !== idToRemove));
     setidToRemove(null);
-    //localStorage.removeItem(('todoArr[]'))
+    let filterArr = todos.filter((todo) => todo.id !== idToRemove)
+    localStorage.setItem("todoArr", JSON.stringify(filterArr))
   }
   function addTodo(title) {
     let todoArr = todos.concat([
