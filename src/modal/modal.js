@@ -2,36 +2,6 @@ import React from "react";
 import "./modal.css";
 import "../index.css";
 
-/*export default class Modal extends React.Component {
-  state = {
-    isOpen: false,
-  };
-  render() {
-    return (
-      <React.Fragment>
-        <button className="rmo" onClick={() => this.setState({ isOpen: true })}>
-          х
-        </button>
-
-        {this.state.isOpen && (
-          <div className="modal">
-            <div className="modal-body">
-              <h1>Confirm delete</h1>
-              <p>Do you realy want delete this todo?</p>
-              <button onClick={() => this.setState({ isOpen: false })}>
-                yes
-              </button>
-              <button onClick={() => this.setState({ isOpen: false })}>
-                no
-              </button>
-            </div>
-          </div>
-        )}
-      </React.Fragment>
-    );
-  }
-}*/
-
 function Modal({ isOpen, handleOk, handleClose }) {
   const onClickYes = () => {
     handleOk();
@@ -44,10 +14,10 @@ function Modal({ isOpen, handleOk, handleClose }) {
   return (
     <div className="modal">
       <div className="modal-body">
-        <h1>Confirm delete</h1>
-        <p>Do you realy want delete this todo?</p>
-        <button onClick={onClickYes}>yes</button>
-        <button onClick={handleClose}>no</button>
+        <h1>Подтверждение</h1>
+        <p>Удалить задачу?</p>
+        <button onClick={onClickYes}>да</button>
+        <button onClick={handleClose}>нет</button>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Context from "../context";
 import Modal from "../modal/modal";
 import RemoveBtn from "./RemoveBtn";
+import ToFixBtn from "./ToFixBtn";
 
 const styles = {
   li: {
@@ -21,6 +22,7 @@ const styles = {
 
 function ToDoItem({ todo, index, onChange }) {
   const { removeTodo } = useContext(Context);
+  const {fixTodo} = useContext(Context)
   const classes = [];
   if (todo.completed) {
     classes.push("done");
@@ -38,6 +40,13 @@ function ToDoItem({ todo, index, onChange }) {
         &nbsp;
         {todo.title}
       </span>
+      <ToFixBtn
+        isFixOpen={todo.completed}
+        todo={todo}
+        key={todo}
+        index={index}
+        fixTodo={fixTodo}
+      />
       <RemoveBtn
         isOpen={todo.completed}
         todo={todo}

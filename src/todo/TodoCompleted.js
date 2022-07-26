@@ -3,7 +3,7 @@ import React from "react";
 function TodoCompleted(props) {
   return (
     <p>
-      Today is <strong>{props.count}</strong> todo completed!
+      Сделано <strong>{props.count}</strong> {props.noun()}!
     </p>
   );
 }

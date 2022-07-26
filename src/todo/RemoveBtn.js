@@ -3,7 +3,7 @@ import React from "react";
 function RemoveBtn({ todo, removeTodo }) {
   const classes = [];
   if (todo.completed) {
-    classes.push("done-btn");
+    
   } else {
     classes.push("rm");
   }

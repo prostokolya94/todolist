@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import Context from "../context";
-import Modal from "../modal/modal";
+import React from "react";
+
 
 const styles = {
   li: {
