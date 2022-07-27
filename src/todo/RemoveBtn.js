@@ -8,7 +8,7 @@ function RemoveBtn({ todo, removeTodo }) {
     classes.push("rm");
   }
   return (
-    <button className={classes.join("")} onClick={() => removeTodo(todo.id)}>
+    <button className={classes.join("")} onClick={() => removeTodo(todo.id)} title='Удалить'>
       &times;
     </button>
   );

@@ -10,9 +10,10 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: ".5rem 1rem",
-    border: "1px solid #ccc",
+    border: "none",
     borderRadius: "4px",
     marginBottom: ".5rem",
+    background: "rgba(255, 0, 0, 0.1)"
   },
   input: {
     marginRight: "1rem",
@@ -34,6 +35,7 @@ function ToDoItem({ todo, index, onChange }) {
           checked={todo.completed}
           style={styles.input}
           onChange={() => onChange(todo.id)}
+          title="Отметить выполнение"
         />
         <strong>{index + 1}</strong>
         &nbsp;

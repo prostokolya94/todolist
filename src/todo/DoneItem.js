@@ -7,8 +7,8 @@ const styles = {
     alignItems: "center",
     padding: ".5rem 1rem",
     border: "2px solid #fff",
-    borderRadius: "1px",
-    background: "rgba(143, 233, 136, 1)",
+    borderRadius: "4px",
+    background: "rgba(0, 0, 255, 0.1)",
   },
   input: {
     marginRight: "1rem",
@@ -22,7 +22,7 @@ function DoneItem({ done, returnToDo }) {
         &nbsp;
         {done.title}
       </span>
-      <button onClick={() => returnToDo(done.id)}> Вернуть на доработку</button>
+      <button onClick={() => returnToDo(done.id)}> Переделать</button>
     </li>
   );
 }

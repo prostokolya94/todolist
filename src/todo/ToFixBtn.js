@@ -8,7 +8,7 @@ function ToFixBtn ({ todo, fixTodo }){
     classes.push("tfb");
   }
   return (
-    <button className={classes.join("")} onClick={() => fixTodo(todo.id)}>
+    <button className={classes.join("")} onClick={() => fixTodo(todo.id)} title ='Исправить'>
       &laquo;
     </button>
   );

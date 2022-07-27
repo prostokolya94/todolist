@@ -25,7 +25,7 @@ code {
   border-radius: 50%;
 }
 .tfb {
-  background: rgb(191, 173, 173);
+  background: rgba(72, 227, 72, 0.568);
   color: rgb(10, 10, 10);
   border: 0ch;
   margin-left: auto;
@@ -39,7 +39,6 @@ code {
 
 .doneItem {
   margin-top: 5rem;
-  background: rgba(0, 0, 0, 1);
 }
 .header {
   display: flex;
