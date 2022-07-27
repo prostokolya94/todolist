@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-
 
 function useInputValue(defaultValue = "") {
   const [value, setValue] = useState(defaultValue);
@@ -11,13 +9,12 @@ function useInputValue(defaultValue = "") {
     },
     clear: () => setValue(""),
     value: () => value,
-    
   };
 }
+//let inputStyle = [];
 
 function AddTodo({ onCreate }) {
   const input = useInputValue("");
-  
 
   function submitHandler(event) {
     event.preventDefault();
@@ -27,6 +24,9 @@ function AddTodo({ onCreate }) {
       input.clear();
     } else {
       input.clear();
+      //inputStyle.push("wrong");
+      //console.log(inputStyle);
+      //setTimeout(inputStyle.splice(0,1), 1000)
     }
   }
 
@@ -40,13 +40,14 @@ function AddTodo({ onCreate }) {
       }}
       onSubmit={submitHandler}
     >
-      <input placeholder="Не более 40 символов" {...input.bind} />
+      <input
+        /*className={inputStyle.join("")}*/
+        placeholder="Не более 40 символов"
+        {...input.bind}
+      />
       <button type="submit">Запланировать</button>
     </form>
   );
 }
-AddTodo.propTypes = {
-  onCreate: PropTypes.func.isRequired,
-};
 
 export default AddTodo;

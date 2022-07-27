@@ -11,7 +11,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idToRemove, setidToRemove] = useState();
-  const [idToFix, setIdToFix] = useState(); //
+  const [idToFix, setIdToFix] = useState();
   const [isFixModalOpen, setIsFixModalOpen] = useState(false);
   const count = todos.filter((el) => el.completed).length;
   const done = todos.filter((el) => el.completed);
@@ -47,7 +47,6 @@ function App() {
     setidToRemove(id);
   }
   function fixTodo(id) {
-    //
     setIsFixModalOpen(true);
     setIdToFix(id);
   }
@@ -60,7 +59,10 @@ function App() {
   function updateTitleById(id, title) {
     let todoArray = todos.map((todo) => {
       if (todo.id === id) {
-        todo.title = title;
+        if (title.length > 0) {
+          todo.title = title;
+        } else {
+        }
       }
       return todo;
     });

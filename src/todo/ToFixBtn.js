@@ -5,7 +5,7 @@ function ToFixBtn ({ todo, fixTodo }){
   if (todo.completed) {
   
   } else {
-    classes.push("rmo");
+    classes.push("tfb");
   }
   return (
     <button className={classes.join("")} onClick={() => fixTodo(todo.id)}>

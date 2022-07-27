@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
 import Context from "../context";
 import Modal from "../modal/modal";
 import RemoveBtn from "./RemoveBtn";
@@ -22,7 +21,7 @@ const styles = {
 
 function ToDoItem({ todo, index, onChange }) {
   const { removeTodo } = useContext(Context);
-  const {fixTodo} = useContext(Context)
+  const { fixTodo } = useContext(Context);
   const classes = [];
   if (todo.completed) {
     classes.push("done");
@@ -59,9 +58,4 @@ function ToDoItem({ todo, index, onChange }) {
   );
 }
 
-ToDoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
-  index: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-};
 export default ToDoItem;

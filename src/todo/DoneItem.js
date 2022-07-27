@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const styles = {
   li: {
     display: "flex",
@@ -23,7 +22,7 @@ function DoneItem({ done, returnToDo }) {
         &nbsp;
         {done.title}
       </span>
-      <button onClick={()=>returnToDo(done.id)}> Вернуть на доработку</button>
+      <button onClick={() => returnToDo(done.id)}> Вернуть на доработку</button>
     </li>
   );
 }

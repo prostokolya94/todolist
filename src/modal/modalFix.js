@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./modal.css";
 import "../index.css";
 
@@ -13,6 +13,10 @@ function ModalFix({ isFixOpen, handleFixClose, handleFixOk, todoToFix }) {
   if (!isFixOpen) {
     return null;
   }
+  const closeFixModal = () => {
+    handleFixClose();
+    setValue('')
+  }
 
   return (
     <div className="modal">
@@ -23,7 +27,7 @@ function ModalFix({ isFixOpen, handleFixClose, handleFixOk, todoToFix }) {
         </div>
 
         <button onClick={onClickYes}>отредактировать</button>
-        <button onClick={handleFixClose}>отмена</button>
+        <button onClick={closeFixModal} >отмена</button>
       </div>
     </div>
   );
