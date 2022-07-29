@@ -1,4 +1,5 @@
 import React from "react";
+import pic from "../img/005-delete.png"
 
 function RemoveBtn({ todo, removeTodo }) {
   const classes = [];
@@ -9,7 +10,7 @@ function RemoveBtn({ todo, removeTodo }) {
   }
   return (
     <button className={classes.join("")} onClick={() => removeTodo(todo.id)} title='Удалить'>
-      &times;
+      <img src={pic} alt="удалить"></img>
     </button>
   );
 }

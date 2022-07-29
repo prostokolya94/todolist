@@ -1,4 +1,6 @@
 import React from "react";
+import pic from "../img/003-repairing-1.png"
+
 
 function ToFixBtn ({ todo, fixTodo }){
   const classes = [];
@@ -9,7 +11,7 @@ function ToFixBtn ({ todo, fixTodo }){
   }
   return (
     <button className={classes.join("")} onClick={() => fixTodo(todo.id)} title ='Исправить'>
-      &laquo;
+      <img src={pic} alt="sdf"></img>
     </button>
   );
 }

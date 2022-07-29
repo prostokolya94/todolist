@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgba(245, 205, 146, 0.2);
 }
 
 code {
@@ -16,21 +17,21 @@ code {
   padding-top: 5rem;
   margin: 0 auto;
   width: 600px;
+  
 }
 
 .rm {
-  background: red;
   color: white;
   border: none;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
+  background: rgba(255, 0, 0, 0.025);
 }
 .tfb {
-  background: rgba(72, 227, 72, 0.568);
-  color: rgb(10, 10, 10);
-  border: 0ch;
+  border: none;
   margin-left: auto;
   margin-right: 0.5rem;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
+  background: rgba(255, 0, 0, 0.025);
 }
 
 .done {
