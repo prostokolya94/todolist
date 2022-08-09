@@ -13,7 +13,7 @@ const styles = {
     border: "none",
     borderRadius: "4px",
     marginBottom: ".5rem",
-    background: "rgba(255, 0, 0, 0.1)"
+    background: "rgba(255, 0, 0, 0.1)",
   },
   input: {
     marginRight: "1rem",
