@@ -27,6 +27,8 @@ function ToDoItem({ todo, index, onChange }) {
   if (todo.completed) {
     classes.push("done");
   }
+  const nows = new Date(todo.id);
+  const now = nows.toISOString();
   return (
     <li style={styles.li} className={classes.join("")}>
       <span>
@@ -40,6 +42,12 @@ function ToDoItem({ todo, index, onChange }) {
         <strong>{index + 1}</strong>
         &nbsp;
         {todo.title}
+        <div className={"title"}>
+          {" ("}
+          {"добавлено "}
+          {now.substr(0, 10)}
+          {")"}
+        </div>
       </span>
       <ToFixBtn
         isFixOpen={todo.completed}

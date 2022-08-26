@@ -53,3 +53,8 @@ code {
 .return {
   margin-left: auto;
 }
+
+.title {
+  font-size: small;
+  font-style:italic;
+}

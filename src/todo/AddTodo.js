@@ -11,7 +11,6 @@ function useInputValue(defaultValue = "") {
     value: () => value,
   };
 }
-//let inputStyle = [];
 
 function AddTodo({ onCreate }) {
   const input = useInputValue("");
@@ -24,9 +23,6 @@ function AddTodo({ onCreate }) {
       input.clear();
     } else {
       input.clear();
-      //inputStyle.push("wrong");
-      //console.log(inputStyle);
-      //setTimeout(inputStyle.splice(0,1), 1000)
     }
   }
 
@@ -40,11 +36,7 @@ function AddTodo({ onCreate }) {
       }}
       onSubmit={submitHandler}
     >
-      <input
-        /*className={inputStyle.join("")}*/
-        placeholder="Не более 40 символов"
-        {...input.bind}
-      />
+      <input placeholder="Не более 40 символов" {...input.bind} />
       <button type="submit">Запланировать</button>
     </form>
   );
