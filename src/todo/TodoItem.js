@@ -27,8 +27,31 @@ function ToDoItem({ todo, index, onChange }) {
   if (todo.completed) {
     classes.push("done");
   }
-  const nows = new Date(todo.id);
-  const now = nows.toISOString();
+  const dates = new Date(todo.id);
+  const date = dates.toISOString();
+  const nows = Date.now();
+  const timeGone = Math.floor((nows - todo.id) / 86400000);
+  let times;
+  let word;
+  if (timeGone > 0) {
+    times = timeGone;
+  }
+  if (times===undefined){
+    word = 'ч.'
+  }
+  function days() {
+    let result = days % 100;
+    let numbValue = result % 10;
+    if ((timeGone > 4 && timeGone <= 21) || (numbValue <= 9 && numbValue > 5)) {
+      return "дней";
+    } else if (timeGone === 1 || numbValue === 1) {
+      return "дня";
+    } else if (timeGone === 0) {
+      return Math.floor((nows - todo.id) / 3600000);
+    } else {
+      return "день";
+    }
+  }
   return (
     <li style={styles.li} className={classes.join("")}>
       <span>
@@ -45,8 +68,12 @@ function ToDoItem({ todo, index, onChange }) {
         <div className={"title"}>
           {" ("}
           {"добавлено "}
-          {now.substr(0, 10)}
+          {date.substr(0, 10)}
           {")"}
+        </div>
+        <div className={"title"}>
+          {"Задача активна "}
+          {times} {days()} {word}
         </div>
       </span>
       <ToFixBtn

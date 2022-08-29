@@ -13,8 +13,9 @@ function App() {
   const [idToRemove, setidToRemove] = useState();
   const [idToFix, setIdToFix] = useState();
   const [isFixModalOpen, setIsFixModalOpen] = useState(false);
+  //const [done, setDone] = useState([])
   const count = todos.filter((el) => el.completed).length;
-  const done = todos.filter((el) => el.completed);
+  let done = todos.filter((el) => el.completed);
   function noun() {
     let result = noun % 100;
     let numbValue = result % 10;
@@ -81,15 +82,27 @@ function App() {
     setTodos(todoArr);
   }
 
+  function clean() {
+    let doneArr = todos.filter((todo) => !todo.completed);
+    setTodos(doneArr)
+    localStorage.setItem("todoArr", JSON.stringify(doneArr));
+  }
+
   useEffect(() => {
     const item = localStorage.getItem("todoArr");
-    let localItem = JSON.parse(item);
+    let localItem;
+    if (item !== undefined) {
+      localItem = JSON.parse(item);
+    } else {
+      localItem = JSON.parse([]);
+    }
+
     if (localItem) {
       setTodos(localItem);
     } else {
       setTodos([]);
     }
-    ///setTodos(localItem ?? [])
+    //setTodos(localItem ?? [])
   }, []);
 
   return (
@@ -119,6 +132,13 @@ function App() {
         )}
         <TodoCompleted count={count} noun={noun} />
         <Done done={done} returnToDo={toggleTodo} />
+        {done.length ? (
+          <button className="clean-button" onClick={clean}>
+            Очистить
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
     </Context.Provider>
   );

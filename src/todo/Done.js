@@ -1,12 +1,18 @@
 import React from "react";
 import DoneItem from "./DoneItem";
 
-function Done({done, returnToDo}) {
-
+function Done({ done, returnToDo, clean }) {
   return (
     <div className="doneItem">
       {done.map((done, index) => {
-        return <DoneItem Item done={done} key={done.id} index={index} returnToDo={returnToDo} />;
+        return (
+          <DoneItem
+            done={done}
+            key={done.id}
+            index={index}
+            returnToDo={returnToDo}
+          />
+        );
       })}
     </div>
   );
