@@ -1,45 +1,31 @@
+import { TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 
-function useInputValue(defaultValue = "") {
-  const [value, setValue] = useState(defaultValue);
-  return {
-    bind: {
-      value,
-      onChange: (event) => setValue(event.target.value),
+const style = {
+    container: {
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        gap: "10px",
     },
-    clear: () => setValue(""),
-    value: () => value,
-  };
-}
+};
 
 function AddTodo({ onCreate }) {
-  const input = useInputValue("");
+    const [currentTitle, setCurrentTitle] = useState("");
+    console.log(currentTitle);
 
-  function submitHandler(event) {
-    event.preventDefault();
-
-    if (input.value().trim().length < 40 && input.value().trim()) {
-      onCreate(input.value());
-      input.clear();
-    } else {
-      input.clear();
-    }
-  }
-
-  return (
-    <form
-      style={{
-        marginBottom: "1rem",
-        justifyContent: "center",
-        display: "flex",
-        alignItems: "center",
-      }}
-      onSubmit={submitHandler}
-    >
-      <input placeholder="Не более 40 символов" {...input.bind} />
-      <button type="submit">Запланировать</button>
-    </form>
-  );
+    return (
+        <div style={style.container}>
+            <TextField
+                onChange={(e) => setCurrentTitle(e.target.value)}
+                size={"small"}
+                value={currentTitle}
+            />
+            <Button onClick={(e) => onCreate(currentTitle)} variant={"outlined"}>
+                Запланировать
+            </Button>
+        </div>
+    );
 }
 
 export default AddTodo;
