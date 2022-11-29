@@ -34,8 +34,7 @@ code {
     border-radius: 50%;
 }
 .tfb:hover,
-.rm:hover,
-.clean-button:hover {
+.rm:hover {
     transform: scale(1.05);
     transition-duration: 0.1s;
     box-shadow: 0px 0px 11px -1px rgba(255, 0, 0, 0.25);

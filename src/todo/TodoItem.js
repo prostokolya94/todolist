@@ -24,7 +24,7 @@ const styles = {
     },
 };
 
-function ToDoItem({ todo, index, onChange, key }) {
+function ToDoItem({ todo, index, onChange }) {
     const { removeTodo } = useContext(Context);
     const { fixTodo } = useContext(Context);
     const classes = [];
@@ -81,7 +81,7 @@ function ToDoItem({ todo, index, onChange, key }) {
                     {times} {days()} {word}
                 </div>
             </span>
-            <div>
+            <div style={{ width: "70px", display: "flex", justifyContent: "space-between" }}>
                 <BuildIcon style={styles.buttons} onClick={(e) => fixTodo(todo.id)} />
                 <DeleteIcon style={styles.buttons} onClick={(e) => removeTodo(todo.id)} />
             </div>

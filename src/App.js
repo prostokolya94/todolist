@@ -4,9 +4,9 @@ import Context from "./context";
 import AddTodo from "./todo/AddTodo";
 import TodoCount from "./todo/TodoCount";
 import Modal from "./modal/modal";
-import Done from "./todo/Done";
+import CompletedTodo from "./todo/CompletedTodo";
 import ModalFix from "./modal/modalFix";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 function App() {
     const [todos, setTodos] = useState([]);
@@ -14,8 +14,10 @@ function App() {
     const [idToRemove, setidToRemove] = useState();
     const [idToFix, setIdToFix] = useState();
     const [isFixModalOpen, setIsFixModalOpen] = useState(false);
+    const [error, setError] = useState(false);
     const count = todos.filter((el) => el.completed).length;
     let done = todos.filter((el) => el.completed);
+
     function noun() {
         let result = noun % 100;
         let numbValue = result % 10;
@@ -35,11 +37,12 @@ function App() {
         let todoArray = todos.map((todo) => {
             if (todo.id === id) {
                 todo.completed = !todo.completed;
+            } else {
+                setError(true);
             }
             return todo;
         });
         setTodos(todoArray);
-
         localStorage.setItem("todoArr", JSON.stringify(todoArray));
     }
 
@@ -50,6 +53,7 @@ function App() {
     function fixTodo(id) {
         setIsFixModalOpen(true);
         setIdToFix(id);
+        localStorage.setItem("title", todos.find((el) => el.id === id).title);
     }
     function handleOkClick() {
         setTodos(todos.filter((todo) => todo.id !== idToRemove));
@@ -62,7 +66,6 @@ function App() {
             if (todo.id === id) {
                 if (title.length > 0) {
                     todo.title = title;
-                } else {
                 }
             }
             return todo;
@@ -71,15 +74,19 @@ function App() {
         localStorage.setItem("todoArr", JSON.stringify(todoArray));
     }
     function addTodo(title) {
-        let todoArr = todos.concat([
-            {
-                title,
-                id: Date.now(),
-                completed: false,
-            },
-        ]);
-        localStorage.setItem("todoArr", JSON.stringify(todoArr));
-        setTodos(todoArr);
+        if (title.length > 0) {
+            let todoArr = todos.concat([
+                {
+                    title,
+                    id: Date.now(),
+                    completed: false,
+                },
+            ]);
+            localStorage.setItem("todoArr", JSON.stringify(todoArr));
+            setTodos(todoArr);
+        } else {
+            setError(true);
+        }
     }
 
     function clean() {
@@ -118,18 +125,18 @@ function App() {
                     Список дел
                 </Typography>
 
-                <AddTodo onCreate={addTodo} />
+                <AddTodo onCreate={addTodo} error={error} setError={setError} />
                 {todos.length ? (
                     <TodoList todos={todos.filter((el) => !el.completed)} onToggle={toggleTodo} />
                 ) : (
                     <p>Нет дел</p>
                 )}
                 <TodoCount count={count} noun={noun} />
-                <Done done={done} returnToDo={toggleTodo} />
+                <CompletedTodo done={done} returnToDo={toggleTodo} />
                 {done.length ? (
-                    <button className="clean-button" onClick={clean}>
+                    <Button onClick={clean} color={"error"} size={"small"}>
                         Очистить
-                    </button>
+                    </Button>
                 ) : (
                     <div></div>
                 )}
